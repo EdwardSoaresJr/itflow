@@ -90,11 +90,18 @@ $num_rows = mysqli_fetch_row(mysqli_query($mysqli,"SELECT FOUND_ROWS()"));
             }else{
               $location_name_display = $location_name;
             }
+
+            $in_use = $row['in_use'];
+            if ($in_use == 1) {
+                $in_use_color = "success";
+            } else {
+                $in_use_color = "danger";
+            }
       
           ?>
           <tr>
             <th>
-              <i class="fa fa-fw fa-network-wired text-success"></i>
+              <i class="fa fa-fw fa-network-wired text-<?php echo $in_use_color; ?>"></i>
               <a class="text-dark" href="#" data-toggle="modal" onclick="populateNetworkEditModal(<?php echo $client_id, ",", $network_id ?>)" data-target="#editNetworkModal"><?php echo $network_name; ?></a></th>
             <td><?php echo $network_vlan_display; ?></td>
             <td><?php echo $network; ?></td>
